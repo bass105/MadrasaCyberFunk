@@ -192,15 +192,15 @@ export default function LoadingScreen() {
             <div className="absolute inset-4 rounded-full border-2 border-cyber-blue/50" />
             <motion.div 
               className="absolute inset-6 rounded-full bg-cyber-blue/20"
-              animate={{ 
+              animate={!prefersReducedMotion ? { 
                 scale: [1, 1.2, 1],
                 opacity: [0.2, 0.8, 0.2]
-              }}
-              transition={{ 
+              } : { opacity: 0.4 }}
+              transition={!prefersReducedMotion ? { 
                 duration: 2, 
                 repeat: Infinity, 
                 ease: "easeInOut" 
-              }}
+              } : {}}
             />
           </motion.div>
           
@@ -208,14 +208,14 @@ export default function LoadingScreen() {
           <div className="absolute inset-0 flex items-center justify-center">
             <motion.div 
               className="font-orbitron text-2xl font-bold text-cyber-cyan"
-              animate={{ 
+              animate={!prefersReducedMotion ? { 
                 textShadow: [
                   "0 0 5px var(--cyber-cyan)",
                   "0 0 20px var(--cyber-cyan)",
                   "0 0 5px var(--cyber-cyan)"
                 ]
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
+              } : {}}
+              transition={!prefersReducedMotion ? { duration: 2, repeat: Infinity } : {}}
             >
               {Math.round(progress)}%
             </motion.div>
@@ -241,8 +241,8 @@ export default function LoadingScreen() {
             </motion.span>
             <motion.span
               className="inline-block w-2 h-5 bg-cyber-cyan ml-1"
-              animate={{ opacity: [1, 0] }}
-              transition={{ duration: 0.8, repeat: Infinity }}
+              animate={!prefersReducedMotion ? { opacity: [1, 0] } : { opacity: 1 }}
+              transition={!prefersReducedMotion ? { duration: 0.8, repeat: Infinity } : {}}
             />
           </motion.div>
         </AnimatePresence>
@@ -261,11 +261,11 @@ export default function LoadingScreen() {
           >
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-              animate={{ x: ["-100%", "100%"] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              animate={!prefersReducedMotion ? { x: ["-100%", "100%"] } : {}}
+              transition={!prefersReducedMotion ? { duration: 1.5, repeat: Infinity, ease: "easeInOut" } : {}}
             />
           </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyber-cyan/20 to-transparent animate-pulse" />
+          <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-cyber-cyan/20 to-transparent ${!prefersReducedMotion ? 'animate-pulse' : ''}`} />
         </motion.div>
 
         {/* System Status Indicators */}
@@ -295,7 +295,7 @@ export default function LoadingScreen() {
                     ? ["0 0 5px #4ade80", "0 0 15px #4ade80", "0 0 5px #4ade80"]
                     : "0 0 0px transparent"
                 }}
-                transition={{ duration: 1, repeat: Infinity }}
+                transition={!prefersReducedMotion ? { duration: 1, repeat: Infinity } : {}}
               />
               <span className="font-mono text-xs text-muted-foreground">{item}</span>
             </motion.div>

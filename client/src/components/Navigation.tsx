@@ -56,7 +56,7 @@ export default function Navigation() {
 
   const handleNavClick = (href: string) => {
     const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: "smooth" });
+    element?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
     setIsMobileMenuOpen(false);
     setActiveSection(href);
   };

@@ -273,8 +273,8 @@ export default function HeroSection() {
               </motion.span>
               <motion.span
                 className="inline-block w-3 h-6 bg-cyber-cyan ml-2"
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.8, repeat: Infinity }}
+                animate={!prefersReducedMotion ? { opacity: [1, 0] } : { opacity: 1 }}
+                transition={!prefersReducedMotion ? { duration: 0.8, repeat: Infinity } : {}}
               />
             </motion.p>
           </motion.div>
